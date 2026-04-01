@@ -1,1 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEP Drafting Services | CAD Drafting India</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Playfair+Display:wght@700&display=swap');
 
+        :root {
+            --brand-orange: #f97316;
+            --brand-white: #ffffff;
+            --brand-dark: #0f172a;
+            --brand-slate: #1e293b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--brand-white);
+            color: var(--brand-dark);
+            scroll-behavior: smooth;
+        }
+
+        /* Branding Styles */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #f1f5f9;
+            z-index: 9999;
+        }
+
+        .brand-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            pointer-events: auto;
+        }
+
+        .logo-square {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--brand-orange);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-btn {
+            position: relative;
+            z-index: 10000;
+            cursor: pointer !important;
+            pointer-events: auto !important;
+            font-weight: 700;
+        }
+
+        /* Hero Styling */
+        .hero-section {
+            position: relative;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.85) 50%, rgba(15, 23, 42, 0.6) 100%);
+            z-index: 1;
+        }
+
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(249, 115, 22, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(249, 115, 22, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 2;
+        }
+
+        /* Deliverables List Styling */
+        .deliverable-row {
+            display: flex;
+            align-items: center;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid #f1f5f9;
+            transition: all 0.3s ease;
+        }
+
+        .deliverable-row i {
+            color: var(--brand-orange);
+            margin-right: 1rem;
+            font-size: 0.8rem;
+        }
+
+        .deliverable-row span {
+            color: #475569;
+            font-weight: 500;
+            font-size: 1.05rem;
+        }
+
+        /* Discipline Cards Styling */
+        .discipline-card {
+            background: white;
+            border-radius: 3rem;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #f1f5f9;
+        }
+
+        .discipline-card.active {
+            border: 1.5px solid var(--brand-orange);
+            box-shadow: 0 20px 40px -10px rgba(249, 115, 22, 0.1);
+        }
+
+        .icon-box {
+            width: 80px;
+            height: 80px;
+            border-radius: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2rem;
+        }
+
+        .icon-box.orange { background-color: var(--brand-orange); color: white; }
+        .icon-box.gray { background-color: #f8fafc; color: var(--brand-dark); }
+
+        /* Revit Section */
+        .revit-banner {
+            background-color: var(--brand-dark);
+            border-radius: 4rem;
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+
+        .cube-bg {
+            position: absolute;
+            top: 50%;
+            right: -5%;
+            transform: translateY(-50%);
+            opacity: 0.08;
+            font-size: 25rem;
+            pointer-events: none;
+        }
+
+        /* Interactive Elements */
+        .clickable-element {
+            cursor: pointer !important;
+            pointer-events: auto !important;
+            transition: all 0.3s ease;
+        }
+
+        .clickable-element:hover { color: var(--brand-orange) !important; }
+
+        .social-link-btn {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
+            background-color: #31211b !important;
+            color: var(--brand-orange) !important;
+            cursor: pointer !important;
+            pointer-events: auto !important;
+            position: relative;
+            z-index: 500;
+            transition: all 0.3s ease;
+        }
+
+        .social-link-btn:hover {
+            transform: translateY(-5px);
+            background-color: #3d2922 !important;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+
+        /* Blog Styling */
+        .blog-content-area h2 {
+            font-size: 1.875rem;
+            font-weight: 800;
+            color: var(--brand-dark);
+            margin-top: 2.5rem;
+            margin-bottom: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: -0.025em;
+        }
+
+        .blog-content-area p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: #4b5563;
+            font-size: 1.125rem;
+        }
+
+        .blog-content-area ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .blog-content-area li {
+            margin-bottom: 0.75rem;
+            list-style-type: disc;
+            color: #4b5563;
+            font-size: 1.125rem;
+        }
+
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full glass-nav h-20 flex items-center shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex justify-between items-center">
+            <div class="brand-box" onclick="showView('home')">
+                <div class="logo-square">
+                    <i class="fas fa-bars-staggered text-orange-500 text-sm"></i>
+                </div>
+                <span class="font-black text-sm tracking-widest uppercase">CAD DRAFTING INDIA</span>
+            </div>
+            <div class="hidden md:flex space-x-10 text-xs font-black uppercase tracking-widest">
+                <button onclick="showView('home')" id="nav-home" class="nav-btn text-[#f97316]">Home</button>
+                <button onclick="showView('blog')" id="nav-blog" class="nav-btn text-slate-500 hover:text-[#f97316]">Blog</button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- HOME VIEW -->
+        <div id="home-view">
+            <!-- Hero -->
+            <section class="hero-section text-white">
+                <div class="hero-overlay"></div>
+                <div class="hero-grid"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-20 pt-16">
+                    <div class="max-w-4xl space-y-8">
+                        <!-- Badge Removed -->
+                        <h1 class="text-6xl md:text-8xl font-black leading-[1.05] tracking-tight">
+                            MEP Drafting <br><span class="text-orange-500">Engineering.</span>
+                        </h1>
+                        <p class="text-xl md:text-2xl text-slate-200 max-w-2xl leading-relaxed font-medium">
+                            Premium technical drafting solutions for global engineering consultants and construction firms.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Intro Section (Screenshot 071705) -->
+            <section class="py-24 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-5xl">
+                        <h2 class="text-4xl md:text-5xl font-black text-[#0f172a] uppercase mb-4 tracking-tight">
+                            MEP DRAFTING SERVICES
+                        </h2>
+                        <div class="w-16 h-1.5 bg-orange-500 mb-10"></div>
+                        <div class="text-slate-700 leading-relaxed space-y-6 text-lg">
+                            <p><span class="text-orange-500 font-bold">CAD Drafting India</span> is a MEP Drafting Services company with over 16+ years of experience and a distinguished track record of working with 300+ companies...</p>
+                            <p>Our MEP CAD experts deliver accurate plans and drawings with minimum inputs and systematized service delivery process making us the top most MEP CAD Services partner in USA, UK, Australia, Europe and Canada.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Deliverables Section (Screenshot 072610) -->
+            <section class="py-24 bg-gray-50 border-y border-gray-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col lg:flex-row gap-12 lg:gap-24">
+                        <div class="lg:w-1/3">
+                            <h2 class="text-4xl md:text-5xl font-black tracking-tight leading-tight uppercase">
+                                <span class="text-[#0f172a]">MEP DRAFTING</span><br>
+                                <span class="text-[#f97316]">DELIVERABLES</span>
+                            </h2>
+                            <p class="mt-8 text-gray-500 text-lg leading-relaxed">
+                                Comprehensive suite of technical documentation tailored for every stage of construction.
+                            </p>
+                        </div>
+                        <div class="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-x-16">
+                            <div>
+                                <div class="deliverable-row"><i class="fas fa-chevron-right"></i><span>HVAC and Electrical CAD Drafting</span></div>
+                                <div class="deliverable-row"><i class="fas fa-chevron-right"></i><span>MEP 3D Modeling</span></div>
+                                <div class="deliverable-row"><i class="fas fa-chevron-right"></i><span>MEP Shop Drawings</span></div>
+                            </div>
+                            <div>
+                                <div class="deliverable-row"><i class="fas fa-chevron-right"></i><span>Plumbing CAD Drafting</span></div>
+                                <div class="deliverable-row"><i class="fas fa-chevron-right"></i><span>MEP BIM Coordination</span></div>
+                                <div class="deliverable-row"><i class="fas fa-chevron-right"></i><span>Revit MEP Drafting Services</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Specialized Disciplines (Screenshot 072430) -->
+            <section class="py-32 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <span class="text-orange-500 font-bold text-xs uppercase tracking-[0.3em] mb-4 block">EXPERTISE</span>
+                    <h2 class="text-4xl md:text-6xl font-black text-[#0f172a] mb-6 tracking-tight">Specialized Disciplines</h2>
+                    <div class="w-16 h-1 bg-orange-500 mx-auto mb-20"></div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                        <div class="discipline-card active">
+                            <div class="icon-box orange"><i class="fas fa-fan"></i></div>
+                            <h3 class="text-2xl font-black text-[#0f172a] mb-4">HVAC Design</h3>
+                            <p class="text-slate-500 leading-relaxed">Energy-efficient heating and ventilation layouts.</p>
+                        </div>
+                        <div class="discipline-card">
+                            <div class="icon-box gray"><i class="fas fa-bolt"></i></div>
+                            <h3 class="text-2xl font-black text-[#0f172a] mb-4">Electrical Plans</h3>
+                            <p class="text-slate-500 leading-relaxed">Power distribution and smart lighting design.</p>
+                        </div>
+                        <div class="discipline-card">
+                            <div class="icon-box gray"><i class="fas fa-droplet"></i></div>
+                            <h3 class="text-2xl font-black text-[#0f172a] mb-4">Plumbing CAD</h3>
+                            <p class="text-slate-500 leading-relaxed">Precision piping and waste management.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Revit Section (Screenshot 071942) -->
+            <section class="py-24 bg-white border-t border-gray-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="revit-banner p-10 md:p-20 relative">
+                        <i class="fas fa-cube cube-bg"></i>
+                        <div class="relative z-10">
+                            <span class="text-orange-500 font-bold text-xs uppercase tracking-[0.3em] mb-4 block">WHAT'S NEW?</span>
+                            <h2 class="text-4xl md:text-6xl font-black mb-12 tracking-tight">Revit MEP Drafting Services</h2>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 text-slate-300 leading-relaxed text-lg">
+                                <p>Apart from MEP CAD Drafting Services, we have successfully forayed into Revit MEP BIM modeling, BIM coordination...</p>
+                                <p>We act as an extended office to many MEP firms, contractors, and engineering consultants...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- BLOG VIEW -->
+        <div id="blog-view" class="hidden py-32 bg-white min-h-screen">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <span class="text-orange-500 font-bold text-sm tracking-widest uppercase">Insights</span>
+                    <h2 class="text-4xl font-black text-[#0f172a] mt-2 tracking-tight">Blog</h2>
+                    <div class="w-16 h-1 bg-orange-500 mx-auto mt-6"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- Integrated MEP BIM Blog Card (FIRST) -->
+                    <article class="bg-slate-50 rounded-[3rem] overflow-hidden border border-slate-100 flex flex-col hover:shadow-xl transition-all group">
+                        <div class="h-80 overflow-hidden">
+                            <img src="Gemini_Generated_Image_v35sg0v35sg0v35s.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="BIM Coordination Visualization">
+                        </div>
+                        <div class="p-10">
+                            <span class="text-orange-500 text-xs font-black uppercase tracking-[0.2em] mb-4 block">TECHNOLOGY & SUSTAINABILITY</span>
+                            <h3 class="text-3xl font-black text-[#0f172a] mb-6 leading-tight">How Integrated MEP BIM Creates Safer, Smarter, and More Sustainable Building Systems</h3>
+                            <p class="text-slate-500 mb-8 leading-relaxed">Exploring how a shared digital model aligns MEP systems with architectural designs to deliver safer, smarter, and greener buildings...</p>
+                            <button onclick="showPost('bim-benefits')" class="text-orange-600 font-black text-sm uppercase tracking-widest hover:underline">Read Full Article</button>
+                        </div>
+                    </article>
+
+                    <!-- Outsourcing Blog Card -->
+                    <article class="bg-slate-50 rounded-[3rem] overflow-hidden border border-slate-100 flex flex-col hover:shadow-xl transition-all group">
+                        <div class="h-80 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Professional Engineering Office">
+                        </div>
+                        <div class="p-10">
+                            <span class="text-orange-500 text-xs font-black uppercase tracking-[0.2em] mb-4 block">BUSINESS</span>
+                            <h3 class="text-3xl font-black text-[#0f172a] mb-6 leading-tight">Why Outsourcing MEP Services is the Smart Choice</h3>
+                            <button class="text-orange-600 font-black text-sm uppercase tracking-widest hover:underline">Read Full Article</button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOG DETAIL VIEW -->
+        <div id="blog-detail-view" class="hidden py-32 bg-white min-h-screen">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <button onclick="showView('blog')" class="text-orange-500 font-bold mb-8 flex items-center gap-2 hover:translate-x-[-4px] transition-transform">
+                    <i class="fas fa-arrow-left"></i> Back to Blog
+                </button>
+                <div class="rounded-[3rem] overflow-hidden mb-12 shadow-2xl h-[500px]">
+                    <img src="Gemini_Generated_Image_v35sg0v35sg0v35s.jpg" class="w-full h-full object-cover" alt="Detailed MEP BIM Model">
+                </div>
+                <div class="blog-content-area">
+                    <h1 class="text-4xl md:text-5xl font-black text-[#0f172a] mb-8 leading-tight">How Integrated MEP BIM Creates Safer, Smarter, and More Sustainable Building Systems</h1>
+                    <p>Buildings today are no longer just physical structures. They are complex systems that must balance comfort, safety, efficiency, and sustainability. Mechanical, electrical, and plumbing (MEP) systems play a critical role in how a building performs, yet they are often the most challenging elements to design and coordinate.</p>
+                    <p>Integrated <a href="https://www.caddraftingindia.com/blog/integrating-mep-bim-services-for-smarter-safer-and-more-effic…"title="MEP BIM has emerged as a practical solution to these challenges." class="link"> <strong>MEP BIM has emerged as a practical solution to these challenges.</strong></a> By developing MEP systems within a shared digital model and aligning them closely with architectural and structural designs, teams gain better visibility, coordination, and control...</p>
+                    <h2>What Does Integrated MEP BIM Really Mean?</h2>
+                    <p>MEP BIM involves creating intelligent 3D models of mechanical, electrical, and plumbing systems. Integration means these models are not developed in isolation. Instead, they are coordinated with architectural and structural models from the earliest design stages.</p>
+                    <h2>Supporting Sustainable Design Goals</h2>
+                    <ul>
+                        <li>Accurate energy modeling to predict operational performance</li>
+                        <li>Optimized HVAC layouts that reduce energy waste</li>
+                        <li>Efficient plumbing systems that minimize water use</li>
+                        <li>Improved coordination of lighting, daylighting, and electrical systems</li>
+                    </ul>
+                    <p>By aligning MEP design with architectural planning through bim architectural services, sustainability strategies can be implemented consistently across the entire building, rather than being added later as corrections.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#111111] text-white pt-24 pb-12 overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-start">
+                <div class="space-y-12">
+                    <div class="flex flex-col items-start">
+                        <div class="brand-box mb-8" onclick="showView('home')">
+                            <div class="logo-square border-[#c29c6d]"><i class="fas fa-bars-staggered text-[#c29c6d] text-sm"></i></div>
+                            <span class="text-[#c29c6d] font-black text-xs tracking-widest uppercase">CAD DRAFTING INDIA</span>
+                        </div>
+                        <h2 class="font-serif text-5xl md:text-7xl text-white leading-[1.1] uppercase tracking-tighter">Time to move <br> on to individual <br> solution</h2>
+                    </div>
+                    <a href="https://www.linkedin.com/company/cad-drafting-india" target="_blank" class="social-link-btn"><i class="fab fa-linkedin-in text-2xl"></i></a>
+                </div>
+                <div class="space-y-16">
+                    <h3 class="font-serif text-4xl text-white tracking-tight">Contacts</h3>
+                    <div class="space-y-12">
+                        <div class="flex items-start gap-8">
+                            <i class="fas fa-phone-alt text-orange-500 mt-2 text-xl"></i>
+                            <div class="flex flex-col space-y-4 text-2xl font-medium tracking-tight">
+                                <a href="tel:+917948004669" class="clickable-element text-slate-300 hover:text-orange-500">+91 79 4800 4669</a>
+                                <a href="tel:+15106803390" class="clickable-element text-slate-300 hover:text-orange-500">+1 510 680 3390</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-8">
+                            <i class="fas fa-envelope text-orange-500 mt-2 text-xl"></i>
+                            <div class="flex items-center gap-6">
+                                <a href="mailto:services@caddraftingindia.com" class="clickable-element text-slate-300 text-2xl font-medium tracking-tight hover:text-orange-500">services@caddraftingindia.com</a>
+                                <button onclick="copyToClipboard('services@caddraftingindia.com')" class="text-gray-600 hover:text-orange-500 transition-colors p-2"><i class="far fa-copy text-2xl"></i></button>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-8">
+                            <i class="fas fa-map-marker-alt text-orange-500 mt-2 text-xl"></i>
+                            <a href="https://www.google.com/maps/search/?api=1&query=807,+Indraprasth+Corporate+Ahmedabad" target="_blank" class="clickable-element block text-2xl leading-snug text-slate-300 font-medium hover:text-orange-500">
+                                <p class="text-white font-bold mb-1">807, Indraprasth Corporate</p>
+                                <p class="text-slate-400">Anand Nagar Road, Prahladnagar</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-32 pt-10 border-t border-white/5 text-center">
+                <p class="text-[10px] text-gray-600 font-black uppercase tracking-[0.5em]">CAD Drafting India</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="copy-toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-orange-600 text-white px-8 py-4 rounded-full shadow-2xl transition-all opacity-0 pointer-events-none translate-y-5">Email copied to clipboard</div>
+
+    <script>
+        function showView(viewId) {
+            const homeView = document.getElementById('home-view');
+            const blogView = document.getElementById('blog-view');
+            const blogDetailView = document.getElementById('blog-detail-view');
+            const navHome = document.getElementById('nav-home');
+            const navBlog = document.getElementById('nav-blog');
+
+            homeView.classList.add('hidden');
+            blogView.classList.add('hidden');
+            blogDetailView.classList.add('hidden');
+
+            if(viewId === 'home') {
+                homeView.classList.remove('hidden');
+                navHome.classList.add('text-[#f97316]');
+                navHome.classList.remove('text-slate-500');
+                navBlog.classList.remove('text-[#f97316]');
+                navBlog.classList.add('text-slate-500');
+            } else if(viewId === 'blog') {
+                blogView.classList.remove('hidden');
+                navBlog.classList.add('text-[#f97316]');
+                navBlog.classList.remove('text-slate-500');
+                navHome.classList.remove('text-[#f97316]');
+                navHome.classList.add('text-slate-500');
+            } else if(viewId === 'detail') {
+                blogDetailView.classList.remove('hidden');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showPost(postId) { showView('detail'); }
+
+        function copyToClipboard(text) {
+            const el = document.createElement('textarea');
+            el.value = text;
+            el.setAttribute('readonly', '');
+            el.style.position = 'absolute';
+            el.style.left = '-9999px';
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            const toast = document.getElementById('copy-toast');
+            toast.classList.remove('opacity-0', 'translate-y-5', 'pointer-events-none');
+            setTimeout(() => { toast.classList.add('opacity-0', 'translate-y-5', 'pointer-events-none'); }, 2000);
+        }
+    </script>
+</body>
+</html>
